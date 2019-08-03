@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'application' //plugin para las propiedades de aplicacion.
+    id 'com.github.johnrengelman.shadow' version '4.0.4'
+
+}
+
+group 'DO.EDU.PUCMM'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+mainClassName = 'main/Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile "com.sparkjava:spark-core:2.7.2"
+    compile 'com.sparkjava:spark-template-freemarker:2.5.5'
+    compile 'com.sparkjava:spark-template-thymeleaf:2.5.5'
+    compile 'org.freemarker:freemarker:2.3.26-incubating'
+    compile 'org.thymeleaf:thymeleaf:3.0.5.RELEASE'
+    compile "com.sparkjava:spark-core:2.6.0"
+    compile "com.sparkjava:spark-template-freemarker:2.5.5"
+    compile group: 'org.slf4j',name: 'slf4j-simple', version: '1.7.21'
+    compile group: 'com.heroku.sdk', name: 'heroku-jdbc', version: '0.1.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.sparkjava:spark-debug-tools:0.5'
+	compile 'com.sparkjava:spark-core:2.7.2'
+
+}
+
+shadowJar {
+    baseName = 'Practica4'
+    classifier = null
+    version = null
+}
+
+task stage {
+    dependsOn shadowJar
+}
